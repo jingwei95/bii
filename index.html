@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
 <title>To Bii 🤍</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Sans+Thai:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -25,7 +26,6 @@
     overflow: hidden;
   }
   
-  /* 動態背景 */
   body::before {
     content: '';
     position: fixed;
@@ -47,7 +47,6 @@
     66% { transform: translate(5%, -5%) rotate(-2deg); }
   }
   
-  /* 顆粒紋理 */
   body::after {
     content: '';
     position: fixed;
@@ -68,6 +67,7 @@
     text-align: center;
     position: relative;
     z-index: 2;
+    width: 100%;
   }
   
   .page {
@@ -92,7 +92,6 @@
     }
   }
   
-  /* 封面 */
   .cover-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: 3.5em;
@@ -107,7 +106,6 @@
     text-shadow: 0 0 40px rgba(212, 184, 150, 0.2);
   }
   
-  /* 內文 */
   p {
     font-size: 1.2em;
     line-height: 2.2;
@@ -121,7 +119,6 @@
     margin-bottom: 0;
   }
   
-  /* 強調 Bii */
   .bii {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
@@ -130,7 +127,6 @@
     letter-spacing: 1px;
   }
   
-  /* 按鈕 */
   .next-btn {
     margin-top: 60px;
     padding: 14px 50px;
@@ -171,7 +167,6 @@
     left: 100%;
   }
   
-  /* 愛心 */
   .heart {
     font-size: 2.5em;
     margin: 30px 0;
@@ -184,7 +179,6 @@
     50% { transform: scale(1.08); opacity: 1; }
   }
   
-  /* 音樂控制 */
   .music-control {
     position: fixed;
     top: 30px;
@@ -207,7 +201,6 @@
     transform: scale(1.1);
   }
   
-  /* 進度指示 */
   .progress {
     position: fixed;
     bottom: 40px;
@@ -232,7 +225,6 @@
     border-radius: 3px;
   }
   
-  /* 最後一頁特殊 */
   .final-heart {
     font-size: 3em;
     margin: 20px 0 30px 0;
@@ -242,7 +234,38 @@
     height: 25px;
   }
   
-  /* 響應式 */
+  /* 照片頁面 */
+  .cover-image {
+    position: relative;
+    width: 100%;
+    min-height: 70vh;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+  
+  .cover-image img {
+    width: 100%;
+    height: 100%;
+    min-height: 70vh;
+    object-fit: cover;
+    filter: brightness(0.55) saturate(1.1);
+  }
+  
+  .cover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 15, 0.3) 50%, rgba(10, 10, 15, 0.8) 100%);
+    padding: 40px;
+  }
+  
   @media (max-width: 600px) {
     .container {
       padding: 40px 25px;
@@ -262,6 +285,11 @@
       padding: 12px 40px;
       font-size: 0.85em;
     }
+    
+    .cover-image,
+    .cover-image img {
+      min-height: 75vh;
+    }
   }
 </style>
 </head>
@@ -271,12 +299,19 @@
 
 <div class="container">
 
+  <!-- Page 1: Cover with photo -->
   <div class="page active" id="page1">
-    <div class="heart">🤍</div>
-    <h1 class="cover-title">To Bii</h1>
-    <button class="next-btn" onclick="showPage(2)">เริ่ม</button>
+    <div class="cover-image">
+      <img src="images/cover.jpg" alt="">
+      <div class="cover-overlay">
+        <div class="heart">🤍</div>
+        <h1 class="cover-title">To Bii</h1>
+        <button class="next-btn" onclick="showPage(2)">เริ่ม</button>
+      </div>
+    </div>
   </div>
 
+  <!-- Page 2 -->
   <div class="page" id="page2">
     <p>ผมไม่รู้ว่าตอนนี้ <span class="bii">Bii</span> รู้สึกยังไงกับผม</p>
     <p><span class="bii">Bii</span> อาจจะรู้สึกว่าผมน่ารำคาญนิดๆ</p>
@@ -284,6 +319,7 @@
     <button class="next-btn" onclick="showPage(3)">ต่อ</button>
   </div>
 
+  <!-- Page 3 -->
   <div class="page" id="page3">
     <p>ผมเข้าใจว่าทุกคนต้องมีพื้นที่ของตัวเอง</p>
     <p>ผมรู้ว่าผมคิดถึง <span class="bii">Bii</span> มาก</p>
@@ -293,12 +329,14 @@
     <button class="next-btn" onclick="showPage(4)">ต่อ</button>
   </div>
 
+  <!-- Page 4 -->
   <div class="page" id="page4">
     <p>แค่บางครั้ง <span class="bii">Bii</span> หายไปเงียบๆ</p>
     <p>ผมก็ยังตกใจอยู่บ้าง 🤣</p>
     <button class="next-btn" onclick="showPage(5)">ต่อ</button>
   </div>
 
+  <!-- Page 5 -->
   <div class="page" id="page5">
     <p>ผมมีอะไรอยากทำกับ <span class="bii">Bii</span> อีกเยอะ</p>
     <p>ไม่อยากแค่นอนกับ <span class="bii">Bii</span></p>
@@ -308,12 +346,14 @@
     <button class="next-btn" onclick="showPage(6)">ต่อ</button>
   </div>
 
+  <!-- Page 6 -->
   <div class="page" id="page6">
     <p>ผมรู้ว่า <span class="bii">Bii</span> ก็พยายามเปลี่ยนเพื่อผม</p>
     <p>ขอบคุณมากๆนะ 🤍</p>
     <button class="next-btn" onclick="showPage(7)">ต่อ</button>
   </div>
 
+  <!-- Page 7 -->
   <div class="page" id="page7">
     <div class="final-heart">🤍</div>
     <p>ผมรัก <span class="bii">Bii</span></p>
@@ -322,13 +362,27 @@
     <p>อยากให้ <span class="bii">Bii</span> อยู่กับผมแล้วสบายใจ</p>
     <div class="final-spacer"></div>
     <p>แต่ผมก็ต้องการให้ <span class="bii">Bii</span> เห็นผมด้วย 🤍</p>
+    <button class="next-btn" onclick="showPage(8)">ต่อ</button>
+  </div>
+
+  <!-- Page 8: Ending photo + message -->
+  <div class="page" id="page8">
+    <div class="cover-image">
+      <img src="images/ending.jpg" alt="">
+      <div class="cover-overlay">
+        <p style="font-size: 1.4em; line-height: 2;">
+          ครั้งต่อไปที่เจอกัน<br>
+          อยากถ่ายรูปกับ <span class="bii">Bii</span> เยอะๆ 🤍
+        </p>
+      </div>
+    </div>
   </div>
 
 </div>
 
-<!-- 進度指示 -->
 <div class="progress" id="progress">
   <div class="progress-dot active"></div>
+  <div class="progress-dot"></div>
   <div class="progress-dot"></div>
   <div class="progress-dot"></div>
   <div class="progress-dot"></div>
@@ -338,18 +392,16 @@
 </div>
 
 <audio id="bgMusic" loop>
-  <source src="YOUR_MUSIC_URL_HERE.mp3" type="audio/mpeg">
+  <source src="music/song.mp3" type="audio/mpeg">
 </audio>
 
 <script>
   let currentPage = 1;
-  const totalPages = 7;
   
   function showPage(num) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById('page' + num).classList.add('active');
     
-    // 更新進度
     document.querySelectorAll('.progress-dot').forEach((dot, i) => {
       if (i < num) {
         dot.classList.add('active');
@@ -360,14 +412,12 @@
     
     currentPage = num;
     
-    // 音樂自動播放（首次點擊後）
     const music = document.getElementById('bgMusic');
     if (music.paused && num > 1) {
       music.play().catch(e => console.log('Music autoplay blocked'));
       document.getElementById('musicBtn').textContent = '♫';
     }
     
-    // 平滑滾動到頂部
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   
