@@ -3,139 +3,338 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ถึงบี 🤍</title>
+<title>To Bii 🤍</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Sans+Thai:wght@300;400&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  html, body {
+    overflow-x: hidden;
+    height: 100%;
+  }
+  
   body {
-    font-family: 'Sukhumvit Set', 'Helvetica Neue', sans-serif;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-    color: #fff;
+    font-family: 'Noto Sans Thai', 'Cormorant Garamond', serif;
+    background: #0a0a0f;
+    color: #f5f5f0;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow-x: hidden;
+    position: relative;
+    overflow: hidden;
   }
+  
+  /* 動態背景 */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+      radial-gradient(circle at 20% 30%, rgba(180, 140, 100, 0.15) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(120, 80, 100, 0.12) 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(80, 60, 90, 0.1) 0%, transparent 50%);
+    animation: drift 20s ease-in-out infinite;
+    z-index: 0;
+  }
+  
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(-5%, 5%) rotate(2deg); }
+    66% { transform: translate(5%, -5%) rotate(-2deg); }
+  }
+  
+  /* 顆粒紋理 */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.03) 1px, transparent 0);
+    background-size: 3px 3px;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
   .container {
-    max-width: 480px;
-    padding: 40px 30px;
+    max-width: 520px;
+    padding: 60px 40px;
     text-align: center;
+    position: relative;
+    z-index: 2;
   }
+  
   .page {
     display: none;
-    animation: fadeIn 1.2s ease-in;
+    animation: fadeInUp 1.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
+  
   .page.active {
     display: block;
   }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+  
+  @keyframes fadeInUp {
+    from { 
+      opacity: 0; 
+      transform: translateY(40px); 
+      filter: blur(4px);
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+      filter: blur(0);
+    }
   }
-  h1 {
-    font-size: 2.2em;
-    margin-bottom: 30px;
+  
+  /* 封面 */
+  .cover-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5em;
     font-weight: 300;
+    font-style: italic;
+    letter-spacing: 8px;
+    margin: 30px 0 40px 0;
+    background: linear-gradient(135deg, #f5e6d3 0%, #d4b896 50%, #b89968 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 40px rgba(212, 184, 150, 0.2);
+  }
+  
+  /* 內文 */
+  p {
+    font-size: 1.2em;
+    line-height: 2.2;
+    margin-bottom: 8px;
+    font-weight: 300;
+    color: rgba(245, 245, 240, 0.92);
+    letter-spacing: 0.5px;
+  }
+  
+  p:last-of-type {
+    margin-bottom: 0;
+  }
+  
+  /* 強調 Bii */
+  .bii {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: #d4b896;
     letter-spacing: 1px;
   }
-  p {
-    font-size: 1.15em;
-    line-height: 1.9;
-    margin-bottom: 15px;
-    font-weight: 300;
-  }
+  
+  /* 按鈕 */
   .next-btn {
-    margin-top: 40px;
-    padding: 12px 35px;
+    margin-top: 60px;
+    padding: 14px 50px;
     background: transparent;
-    color: #fff;
-    border: 1px solid rgba(255,255,255,0.4);
-    border-radius: 30px;
-    font-size: 1em;
+    color: #f5e6d3;
+    border: 1px solid rgba(212, 184, 150, 0.4);
+    border-radius: 50px;
+    font-size: 0.95em;
     cursor: pointer;
-    transition: all 0.3s;
-    font-family: inherit;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    font-family: 'Noto Sans Thai', sans-serif;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
   }
+  
+  .next-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212, 184, 150, 0.2), transparent);
+    transition: left 0.8s;
+  }
+  
   .next-btn:hover {
-    background: rgba(255,255,255,0.1);
-    border-color: #fff;
+    background: rgba(212, 184, 150, 0.08);
+    border-color: #d4b896;
+    color: #fff;
+    letter-spacing: 4px;
+    box-shadow: 0 0 30px rgba(212, 184, 150, 0.2);
   }
+  
+  .next-btn:hover::before {
+    left: 100%;
+  }
+  
+  /* 愛心 */
   .heart {
-    font-size: 3em;
-    margin: 20px 0;
+    font-size: 2.5em;
+    margin: 30px 0;
+    animation: heartbeat 2.5s ease-in-out infinite;
+    display: inline-block;
   }
+  
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.08); opacity: 1; }
+  }
+  
+  /* 音樂控制 */
   .music-control {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    background: rgba(255,255,255,0.1);
-    border: none;
-    color: #fff;
-    width: 40px;
-    height: 40px;
+    top: 30px;
+    right: 30px;
+    background: rgba(245, 230, 211, 0.08);
+    border: 1px solid rgba(212, 184, 150, 0.3);
+    color: #d4b896;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 1.2em;
+    font-size: 1.1em;
+    transition: all 0.4s;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  
+  .music-control:hover {
+    background: rgba(245, 230, 211, 0.15);
+    transform: scale(1.1);
+  }
+  
+  /* 進度指示 */
+  .progress {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+  }
+  
+  .progress-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(212, 184, 150, 0.25);
+    transition: all 0.5s;
+  }
+  
+  .progress-dot.active {
+    background: #d4b896;
+    width: 30px;
+    border-radius: 3px;
+  }
+  
+  /* 最後一頁特殊 */
+  .final-heart {
+    font-size: 3em;
+    margin: 20px 0 30px 0;
+  }
+  
+  .final-spacer {
+    height: 25px;
+  }
+  
+  /* 響應式 */
+  @media (max-width: 600px) {
+    .container {
+      padding: 40px 25px;
+    }
+    
+    .cover-title {
+      font-size: 2.8em;
+      letter-spacing: 5px;
+    }
+    
+    p {
+      font-size: 1.1em;
+      line-height: 2;
+    }
+    
+    .next-btn {
+      padding: 12px 40px;
+      font-size: 0.85em;
+    }
   }
 </style>
 </head>
 <body>
 
-<button class="music-control" onclick="toggleMusic()">🎵</button>
+<button class="music-control" onclick="toggleMusic()" id="musicBtn">♪</button>
 
 <div class="container">
 
   <div class="page active" id="page1">
     <div class="heart">🤍</div>
-    <h1>ถึงบี</h1>
+    <h1 class="cover-title">To Bii</h1>
     <button class="next-btn" onclick="showPage(2)">เริ่ม</button>
   </div>
 
   <div class="page" id="page2">
-    <p>ผมไม่รู้ว่าตอนนี้บีรู้สึกยังไงกับผม</p>
-    <p>บีอาจจะรู้สึกว่าผมน่ารำคาญนิดๆ</p>
-    <p>แต่จริงๆ ผมไม่อยากเป็นภาระบีเลย</p>
+    <p>ผมไม่รู้ว่าตอนนี้ <span class="bii">Bii</span> รู้สึกยังไงกับผม</p>
+    <p><span class="bii">Bii</span> อาจจะรู้สึกว่าผมน่ารำคาญนิดๆ</p>
+    <p>แต่จริงๆ ผมไม่อยากเป็นภาระ <span class="bii">Bii</span> เลย</p>
     <button class="next-btn" onclick="showPage(3)">ต่อ</button>
   </div>
 
   <div class="page" id="page3">
     <p>ผมเข้าใจว่าทุกคนต้องมีพื้นที่ของตัวเอง</p>
-    <p>ผมรู้ว่าผมคิดถึงบีมาก ผมว่าบีก็รู้</p>
-    <p>ผมพยายามรอบีอยู่</p>
-    <p>หวังว่าบีจะรู้สึกได้นะ</p>
+    <p>ผมรู้ว่าผมคิดถึง <span class="bii">Bii</span> มาก</p>
+    <p>ผมว่า <span class="bii">Bii</span> ก็รู้</p>
+    <p>ผมพยายามรอ <span class="bii">Bii</span> อยู่</p>
+    <p>หวังว่า <span class="bii">Bii</span> จะรู้สึกได้นะ</p>
     <button class="next-btn" onclick="showPage(4)">ต่อ</button>
   </div>
 
   <div class="page" id="page4">
-    <p>แค่บางครั้งบีหายไปเงียบๆ</p>
+    <p>แค่บางครั้ง <span class="bii">Bii</span> หายไปเงียบๆ</p>
     <p>ผมก็ยังตกใจอยู่บ้าง 🤣</p>
     <button class="next-btn" onclick="showPage(5)">ต่อ</button>
   </div>
 
   <div class="page" id="page5">
-    <p>ผมมีอะไรอยากทำกับบีอีกเยอะ</p>
-    <p>ไม่อยากแค่นอนกับบี อยากไปเที่ยวด้วยกัน</p>
+    <p>ผมมีอะไรอยากทำกับ <span class="bii">Bii</span> อีกเยอะ</p>
+    <p>ไม่อยากแค่นอนกับ <span class="bii">Bii</span></p>
+    <p>อยากไปเที่ยวด้วยกัน</p>
     <p>ไม่เป็นไร เดี๋ยวผมจะทำงานหนักๆ</p>
     <p>ให้เรามีเวลาเที่ยวด้วยกันมากขึ้น 😈</p>
     <button class="next-btn" onclick="showPage(6)">ต่อ</button>
   </div>
 
   <div class="page" id="page6">
-    <p>ผมรู้ว่าบีก็พยายามเปลี่ยนเพื่อผม</p>
+    <p>ผมรู้ว่า <span class="bii">Bii</span> ก็พยายามเปลี่ยนเพื่อผม</p>
     <p>ขอบคุณมากๆนะ 🤍</p>
     <button class="next-btn" onclick="showPage(7)">ต่อ</button>
   </div>
 
   <div class="page" id="page7">
-    <div class="heart">🤍</div>
-    <p>ผมรักบี</p>
-    <p>ผมไม่อยากเป็นภาระของบี</p>
-    <p>ผมอยากเป็นคนที่ทำให้บีรู้สึกปลอดภัย</p>
-    <p>อยากให้บีอยู่กับผมแล้วสบายใจ</p>
-    <br>
-    <p>แต่ผมก็ต้องการให้บีเห็นผมด้วย 🤍</p>
+    <div class="final-heart">🤍</div>
+    <p>ผมรัก <span class="bii">Bii</span></p>
+    <p>ผมไม่อยากเป็นภาระของ <span class="bii">Bii</span></p>
+    <p>ผมอยากเป็นคนที่ทำให้ <span class="bii">Bii</span> รู้สึกปลอดภัย</p>
+    <p>อยากให้ <span class="bii">Bii</span> อยู่กับผมแล้วสบายใจ</p>
+    <div class="final-spacer"></div>
+    <p>แต่ผมก็ต้องการให้ <span class="bii">Bii</span> เห็นผมด้วย 🤍</p>
   </div>
 
+</div>
+
+<!-- 進度指示 -->
+<div class="progress" id="progress">
+  <div class="progress-dot active"></div>
+  <div class="progress-dot"></div>
+  <div class="progress-dot"></div>
+  <div class="progress-dot"></div>
+  <div class="progress-dot"></div>
+  <div class="progress-dot"></div>
+  <div class="progress-dot"></div>
 </div>
 
 <audio id="bgMusic" loop>
@@ -143,23 +342,44 @@
 </audio>
 
 <script>
+  let currentPage = 1;
+  const totalPages = 7;
+  
   function showPage(num) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById('page' + num).classList.add('active');
     
-    // 開始音樂（在 user 第一次點擊後）
+    // 更新進度
+    document.querySelectorAll('.progress-dot').forEach((dot, i) => {
+      if (i < num) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+    
+    currentPage = num;
+    
+    // 音樂自動播放（首次點擊後）
     const music = document.getElementById('bgMusic');
-    if (music.paused) {
+    if (music.paused && num > 1) {
       music.play().catch(e => console.log('Music autoplay blocked'));
+      document.getElementById('musicBtn').textContent = '♫';
     }
+    
+    // 平滑滾動到頂部
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   
   function toggleMusic() {
     const music = document.getElementById('bgMusic');
+    const btn = document.getElementById('musicBtn');
     if (music.paused) {
       music.play();
+      btn.textContent = '♫';
     } else {
       music.pause();
+      btn.textContent = '♪';
     }
   }
 </script>
