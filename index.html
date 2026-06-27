@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ถึงบี 🤍</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Sukhumvit Set', 'Helvetica Neue', sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+  }
+  .container {
+    max-width: 480px;
+    padding: 40px 30px;
+    text-align: center;
+  }
+  .page {
+    display: none;
+    animation: fadeIn 1.2s ease-in;
+  }
+  .page.active {
+    display: block;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  h1 {
+    font-size: 2.2em;
+    margin-bottom: 30px;
+    font-weight: 300;
+    letter-spacing: 1px;
+  }
+  p {
+    font-size: 1.15em;
+    line-height: 1.9;
+    margin-bottom: 15px;
+    font-weight: 300;
+  }
+  .next-btn {
+    margin-top: 40px;
+    padding: 12px 35px;
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 30px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: inherit;
+  }
+  .next-btn:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: #fff;
+  }
+  .heart {
+    font-size: 3em;
+    margin: 20px 0;
+  }
+  .music-control {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2em;
+  }
+</style>
+</head>
+<body>
+
+<button class="music-control" onclick="toggleMusic()">🎵</button>
+
+<div class="container">
+
+  <div class="page active" id="page1">
+    <div class="heart">🤍</div>
+    <h1>ถึงบี</h1>
+    <button class="next-btn" onclick="showPage(2)">เริ่ม</button>
+  </div>
+
+  <div class="page" id="page2">
+    <p>ผมไม่รู้ว่าตอนนี้บีรู้สึกยังไงกับผม</p>
+    <p>บีอาจจะรู้สึกว่าผมน่ารำคาญนิดๆ</p>
+    <p>แต่จริงๆ ผมไม่อยากเป็นภาระบีเลย</p>
+    <button class="next-btn" onclick="showPage(3)">ต่อ</button>
+  </div>
+
+  <div class="page" id="page3">
+    <p>ผมเข้าใจว่าทุกคนต้องมีพื้นที่ของตัวเอง</p>
+    <p>ผมรู้ว่าผมคิดถึงบีมาก ผมว่าบีก็รู้</p>
+    <p>ผมพยายามรอบีอยู่</p>
+    <p>หวังว่าบีจะรู้สึกได้นะ</p>
+    <button class="next-btn" onclick="showPage(4)">ต่อ</button>
+  </div>
+
+  <div class="page" id="page4">
+    <p>แค่บางครั้งบีหายไปเงียบๆ</p>
+    <p>ผมก็ยังตกใจอยู่บ้าง 🤣</p>
+    <button class="next-btn" onclick="showPage(5)">ต่อ</button>
+  </div>
+
+  <div class="page" id="page5">
+    <p>ผมมีอะไรอยากทำกับบีอีกเยอะ</p>
+    <p>ไม่อยากแค่นอนกับบี อยากไปเที่ยวด้วยกัน</p>
+    <p>ไม่เป็นไร เดี๋ยวผมจะทำงานหนักๆ</p>
+    <p>ให้เรามีเวลาเที่ยวด้วยกันมากขึ้น 😈</p>
+    <button class="next-btn" onclick="showPage(6)">ต่อ</button>
+  </div>
+
+  <div class="page" id="page6">
+    <p>ผมรู้ว่าบีก็พยายามเปลี่ยนเพื่อผม</p>
+    <p>ขอบคุณมากๆนะ 🤍</p>
+    <button class="next-btn" onclick="showPage(7)">ต่อ</button>
+  </div>
+
+  <div class="page" id="page7">
+    <div class="heart">🤍</div>
+    <p>ผมรักบี</p>
+    <p>ผมไม่อยากเป็นภาระของบี</p>
+    <p>ผมอยากเป็นคนที่ทำให้บีรู้สึกปลอดภัย</p>
+    <p>อยากให้บีอยู่กับผมแล้วสบายใจ</p>
+    <br>
+    <p>แต่ผมก็ต้องการให้บีเห็นผมด้วย 🤍</p>
+  </div>
+
+</div>
+
+<audio id="bgMusic" loop>
+  <source src="YOUR_MUSIC_URL_HERE.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  function showPage(num) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page' + num).classList.add('active');
+    
+    // 開始音樂（在 user 第一次點擊後）
+    const music = document.getElementById('bgMusic');
+    if (music.paused) {
+      music.play().catch(e => console.log('Music autoplay blocked'));
+    }
+  }
+  
+  function toggleMusic() {
+    const music = document.getElementById('bgMusic');
+    if (music.paused) {
+      music.play();
+    } else {
+      music.pause();
+    }
+  }
+</script>
+
+</body>
+</html>
