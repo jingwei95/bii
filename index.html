@@ -34,7 +34,7 @@
     background-size: 3px 3px; pointer-events: none; z-index: 1;
   }
   .container {
-    max-width: 520px; padding: 60px 40px; text-align: center;
+    max-width: 540px; padding: 60px 40px; text-align: center;
     position: relative; z-index: 2; width: 100%;
   }
   .page { display: none; animation: fadeInUp 1.8s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -51,21 +51,22 @@
     background-clip: text; text-shadow: 0 0 40px rgba(212, 184, 150, 0.2);
   }
   p {
-    font-size: 1.2em; line-height: 2.2; margin-bottom: 8px; font-weight: 300;
+    font-size: 1.15em; line-height: 2.1; margin-bottom: 6px; font-weight: 300;
     color: rgba(245, 245, 240, 0.92); letter-spacing: 0.5px;
   }
   p:last-of-type { margin-bottom: 0; }
   .name-line {
     font-family: 'Cormorant Garamond', serif; font-size: 1.8em;
-    font-style: italic; margin-bottom: 24px;
+    font-style: italic; margin-bottom: 22px; color: #d4b896;
   }
   .bii {
     font-family: 'Cormorant Garamond', serif; font-style: italic;
     font-weight: 400; color: #d4b896; letter-spacing: 1px;
   }
+  .heart-line { color: #f5e6d3; }
   .next-btn {
-    margin-top: 60px; padding: 14px 50px; background: transparent; color: #f5e6d3;
-    border: 1px solid rgba(212, 184, 150, 0.4); border-radius: 50px; font-size: 0.95em;
+    margin-top: 48px; padding: 13px 46px; background: transparent; color: #f5e6d3;
+    border: 1px solid rgba(212, 184, 150, 0.4); border-radius: 50px; font-size: 0.9em;
     cursor: pointer; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     font-family: 'Noto Sans Thai', sans-serif; letter-spacing: 3px;
     text-transform: uppercase; position: relative; overflow: hidden;
@@ -96,14 +97,14 @@
   }
   .music-control:hover { background: rgba(245, 230, 211, 0.15); transform: scale(1.1); }
   .progress {
-    position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%);
-    display: flex; gap: 12px; z-index: 10;
+    position: fixed; bottom: 34px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 8px; z-index: 10; max-width: 90%; flex-wrap: wrap; justify-content: center;
   }
   .progress-dot {
     width: 6px; height: 6px; border-radius: 50%;
     background: rgba(212, 184, 150, 0.25); transition: all 0.5s;
   }
-  .progress-dot.active { background: #d4b896; width: 30px; border-radius: 3px; }
+  .progress-dot.active { background: #d4b896; width: 22px; border-radius: 3px; }
   .cover-image {
     position: relative; width: 100%; min-height: 70vh; border-radius: 20px;
     overflow: hidden; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
@@ -115,15 +116,17 @@
   .cover-overlay {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
-    background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 15, 0.3) 50%, rgba(10, 10, 15, 0.8) 100%);
+    background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 15, 0.3) 50%, rgba(10, 10, 15, 0.85) 100%);
     padding: 40px;
   }
   @media (max-width: 600px) {
-    .container { padding: 40px 25px; }
+    .container { padding: 36px 24px; }
     .cover-title { font-size: 2.8em; letter-spacing: 5px; }
-    p { font-size: 1.1em; line-height: 2; }
-    .next-btn { padding: 12px 40px; font-size: 0.85em; }
+    p { font-size: 1.05em; line-height: 1.95; }
+    .next-btn { padding: 12px 38px; font-size: 0.82em; }
     .cover-image, .cover-image img { min-height: 75vh; }
+    .progress { gap: 6px; }
+    .progress-dot.active { width: 18px; }
   }
 </style>
 </head>
@@ -133,7 +136,7 @@
 
 <div class="container">
 
-  <!-- Page 1: Opening -->
+  <!-- Page 1: Cover -->
   <div class="page active" id="page1">
     <div class="heart">🤍</div>
     <h1 class="cover-title">To Bii</h1>
@@ -143,27 +146,104 @@
   <!-- Page 2 -->
   <div class="page" id="page2">
     <p class="name-line"><span class="bii">Bii</span></p>
-    <p>ช่วงนี้เราก็งอนกันบ่อยหน่อยเนอะ</p>
-    <p>ขอบคุณนะ ที่ยอมนั่งลงคุยกับผม แล้วก็รับฟังผม</p>
-    <p>ทำให้เราเข้าใจกันมากขึ้น</p>
+    <p>ผมชอบเวลาเธอเรียกผมว่า Bii</p>
+    <p>แล้วก็ชอบตอนที่เธอเรียกผมว่า Auan</p>
+    <p>จริงๆ ในใจผมก็ยิ้มแล้ววิ่งเข้าหาเธอเลยนะ</p>
+    <p>แล้วค่อยแกล้งทำเป็น “haa?”</p>
     <button class="next-btn" onclick="showPage(3)">ต่อ</button>
   </div>
 
   <!-- Page 3 -->
   <div class="page" id="page3">
-    <p>มันก็ไม่ใช่เรื่องใหญ่อะไรเลย</p>
-    <p>เพราะงั้นอย่าเพิ่งรีบอยากปล่อยมือกันไปเลยนะ</p>
+    <p>ตั้งแต่วันแรกที่คบกับเธอจนถึงตอนนี้</p>
+    <p>ผมรู้สึกว่าตัวเองโตขึ้นเยอะเลย</p>
+    <p>ไม่ใช่ว่าเมื่อก่อนมันไม่ดีนะ</p>
+    <p>แต่ผมเข้าใจจริงๆ ว่าคนสองคนนิสัยกับความเคยชินมันก็ต่างกัน</p>
+    <p>มันต้องปรับเข้าหากัน</p>
+    <p>มันไม่ใช่ปัญหาอะไรเลย ผมรักเธอ ผมยอมปรับตัวเพื่อเธอ</p>
     <button class="next-btn" onclick="showPage(4)">ต่อ</button>
   </div>
 
-  <!-- Page 4: Ending photo -->
+  <!-- Page 4 -->
   <div class="page" id="page4">
+    <p>เมื่อก่อนผมจะงอแงตลอด</p>
+    <p>ว่าทำไมเธอไม่ตอบ ทำไมไม่วิดีโอคอลหาผม</p>
+    <p>ตอนนี้ผมไม่เป็นแบบนั้นแล้ว</p>
+    <p>ผมรู้ว่าเธอมีเวลาเธอก็จะหาผมเอง คิดถึงผมเธอก็จะหาผมเอง</p>
+    <p>งั้นผมก็ไปทำเรื่องของผมไป</p>
+    <p>เราไม่จำเป็นต้องติดกันตลอด 24 ชั่วโมงก็ได้</p>
+    <button class="next-btn" onclick="showPage(5)">ต่อ</button>
+  </div>
+
+  <!-- Page 5 -->
+  <div class="page" id="page5">
+    <p>ช่วงนี้เราทะเลาะกันเรื่องบอกช้าบ่อยๆ ทำให้เธอเหนื่อย</p>
+    <p>แต่ก่อนเลิกกันผมก็บอกเธอไปแล้วนะ</p>
+    <p>ว่าผมไม่เป็นไรแล้ว บอกช้าก็ไม่เป็นไร ขอแค่เธอปลอดภัยก็พอ ผมเชื่อใจเธอ</p>
+    <button class="next-btn" onclick="showPage(6)">ต่อ</button>
+  </div>
+
+  <!-- Page 6 -->
+  <div class="page" id="page6">
+    <p>วันนั้นมันเป็นครั้งแรกที่ผมเห็นเธอออกไปกับลูกค้า ผมเลยคิดมากไปเอง</p>
+    <p>ผมไม่ควรขับไปรับเธอถึงที่ แล้วให้เธอออกมาแบบนั้น</p>
+    <p>มันเป็นความผิดผมเอง ผมรู้</p>
+    <p>แต่ก็อย่าเพราะมันมีครั้งแรก แล้วคิดว่ามันจะต้องมีครั้งที่สอง</p>
+    <p>แล้วก็อย่าเพราะกลัวว่าผมจะไม่โอเคอีก เลยคิดจะเลิกกันไปเลยนะ</p>
+    <button class="next-btn" onclick="showPage(7)">ต่อ</button>
+  </div>
+
+  <!-- Page 7 -->
+  <div class="page" id="page7">
+    <p>เมื่อก่อนหลายเรื่อง ผมถามซ้ำๆ งอแงซ้ำๆ จนเธอเหนื่อย</p>
+    <p>ขอโทษนะ</p>
+    <p>ผมรู้ว่าผมไม่ทำอะไรเธอหรอก ยิ่งไม่มีทางทำร้ายเธอ</p>
+    <p>แต่ผมยอมรับว่าเวลาผมโมโห ผมก็ไม่ค่อยมีเหตุผล</p>
+    <p>เอาแต่จะเก็บของแล้วเดินออกไป ช่วงหลังถึงขั้นขว้างปาข้าวของ</p>
+    <p>พอมองย้อนกลับไป ผมเองก็รู้สึกว่ามันไม่ดีเลย</p>
+    <p>ผมกำลังหัดอยู่ ว่าเวลาโมโหจะหยุดก่อน แล้วค่อยๆ พูดกับเธอดีๆ ไม่ใช่ทำแบบนั้นอีก</p>
+    <button class="next-btn" onclick="showPage(8)">ต่อ</button>
+  </div>
+
+  <!-- Page 8 -->
+  <div class="page" id="page8">
+    <p>เหมือนครั้งที่แล้ว ที่เธอเมากลับบ้านแล้วลืมบอกผม</p>
+    <p>ผมโทรหาเธอ ผมไม่ได้ด่า ไม่ได้โมโห</p>
+    <p>แค่ให้เธอรีบพูดขอโทษผมเร็วๆ 55555</p>
+    <p>ผมอยากเป็นตัวเองแบบนั้นแหละ</p>
+    <button class="next-btn" onclick="showPage(9)">ต่อ</button>
+  </div>
+
+  <!-- Page 9 -->
+  <div class="page" id="page9">
+    <p>ผมไม่อยากอยู่ข้างๆ เธอในฐานะแค่เพื่อน</p>
+    <p>ถึงเธอจะปฏิบัติกับผมเหมือนเดิมทุกอย่าง ผมก็ไม่เอา</p>
+    <p>สิ่งที่ผมอยากได้คือฐานะ “แฟน”</p>
+    <p>แต่ฐานะนี้ ไม่ได้มีไว้เพื่อควบคุมเธอ</p>
+    <p>ผมไม่เคยคิดจะควบคุมเธอเลย</p>
+    <p class="heart-line">ผมแค่... อยากให้เธอเป็นของผม</p>
+    <button class="next-btn" onclick="showPage(10)">ต่อ</button>
+  </div>
+
+  <!-- Page 10 -->
+  <div class="page" id="page10">
+    <p>ผมพูดจริงนะ ผมอยากให้เธอเป็นแฟนคนสุดท้ายของผม</p>
+    <p>เธออาจจะไม่เชื่อ</p>
+    <p>แต่คนต่อไป คงไม่โชคดีเท่านี้แล้วมั้ง</p>
+    <p>ซวยแน่ๆ เลยเธอ 55555</p>
+    <button class="next-btn" onclick="showPage(11)">ต่อ</button>
+  </div>
+
+  <!-- Page 11: Ending photo -->
+  <div class="page" id="page11">
     <div class="cover-image">
-      <img src="ending.jpeg" alt="">
+      <img src="together.jpeg" alt="">
       <div class="cover-overlay">
-        <p style="font-size: 1.4em; line-height: 2;">
-          ยังไงผมก็ยังอยากมีเธออยู่ข้างๆ<br>
-          <span style="font-size: 1.3em;">🤍</span>
+        <p style="font-size: 1.3em; line-height: 2;">
+          ถ้าเธอต้องการเวลา<br>
+          ผมก็อยู่ข้างๆ เธอเงียบๆ ได้<br>
+          แต่ผมพูดจริงจังนะ<br>
+          <span style="color:#f5e6d3;">ผมอยากให้เป็นเธอ</span> <span style="font-size:1.1em;">🤍</span>
         </p>
       </div>
     </div>
@@ -176,10 +256,17 @@
   <div class="progress-dot"></div>
   <div class="progress-dot"></div>
   <div class="progress-dot"></div>
+  <div class="progress-dot"></div>
+  <div class="progress-dot"></div>
+  <div class="progress-dot"></div>
+  <div class="progress-dot"></div>
+  <div class="progress-dot"></div>
+  <div class="progress-dot"></div>
+  <div class="progress-dot"></div>
 </div>
 
 <audio id="bgMusic" loop>
-  <source src="song.mp3" type="audio/mpeg">
+  <source src="proof.mp3" type="audio/mpeg">
 </audio>
 
 <script>
